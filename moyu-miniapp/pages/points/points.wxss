@@ -1,0 +1,30 @@
+.header { border-bottom: 2rpx solid #222; }
+.header-content { padding: 0 48rpx 24rpx; display: flex; align-items: center; gap: 24rpx; }
+.capsule-spacer { width: 174rpx; flex-shrink: 0; }
+.back-btn { width: 40rpx; height: 40rpx; }
+.header-title { font-size: 36rpx; color: #fff; }
+
+.points-card { margin: 32rpx 48rpx; padding: 56rpx 48rpx; background: linear-gradient(135deg, #FF9B85, #FFA07A); border-radius: 32rpx; color: #fff; }
+.points-label { font-size: 28rpx; opacity: 0.9; display: block; margin-bottom: 8rpx; }
+.points-value { font-size: 72rpx; display: block; }
+
+.products-section { padding: 24rpx 48rpx; }
+.section-title { font-size: 32rpx; color: #fff; display: block; margin-bottom: 24rpx; }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20rpx; }
+.points-product { background: #111; overflow: hidden; border: 2rpx solid #333; }
+.pp-image { width: 100%; height: 280rpx; background: #1A1A1A; }
+.pp-info { padding: 24rpx; }
+.pp-name { font-size: 28rpx; color: #fff; display: block; margin-bottom: 12rpx; }
+.pp-bottom { display: flex; justify-content: space-between; margin-bottom: 16rpx; }
+.pp-points { font-size: 28rpx; color: #FF9B85; }
+.pp-stock { font-size: 24rpx; color: var(--color-text-gray); }
+.pp-btn { background: linear-gradient(135deg, #FF9B85, #FFA07A); color: #fff; border-radius: 40rpx; padding: 16rpx 0; text-align: center; font-size: 26rpx; }
+
+.records-section { padding: 24rpx 48rpx; }
+.records-list { background: #111; border: 2rpx solid #333; overflow: hidden; }
+.rec-item { display: flex; justify-content: space-between; align-items: center; padding: 32rpx; border-bottom: 2rpx solid #333; }
+.rec-item:last-child { border-bottom: none; }
+.rec-desc { font-size: 28rpx; color: #fff; display: block; margin-bottom: 4rpx; }
+.rec-date { font-size: 24rpx; color: var(--color-text-gray); }
+.rec-points { font-size: 32rpx; color: #fff; }
+.rec-points.plus { color: #FF9B85; }

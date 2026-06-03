@@ -1,0 +1,54 @@
+.login-page { min-height: 100vh; background: var(--color-bg); }
+.login-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 48rpx 200rpx; }
+
+.logo-section { text-align: center; margin-bottom: 120rpx; }
+.logo-icon {
+  width: 140rpx; height: 140rpx; background: var(--color-dark);
+  border-radius: 24rpx; display: flex; align-items: center;
+  justify-content: center; font-size: 72rpx; margin: 0 auto 28rpx;
+}
+.logo-name { font-size: 56rpx; display: block; margin-bottom: 10rpx; }
+.logo-sub { font-size: 26rpx; color: var(--color-text-gray); letter-spacing: 4rpx; }
+
+.form-section { width: 100%; max-width: 600rpx; }
+
+.agreement { display: flex; align-items: flex-start; gap: 12rpx; padding: 0 8rpx 48rpx; }
+.checkbox {
+  width: 32rpx; height: 32rpx; border: 2rpx solid var(--color-text-light);
+  border-radius: 8rpx; display: flex; align-items: center; justify-content: center;
+}
+.checkbox.checked { background: var(--color-dark); border-color: var(--color-dark); }
+.agree-text { font-size: 24rpx; color: var(--color-text-gray); line-height: 1.6; }
+.link { color: var(--color-gold); }
+
+.wechat-btn {
+  width: 100%; padding: 28rpx 0; background: var(--color-dark);
+  color: var(--color-gold); border-radius: 16rpx; font-size: 32rpx;
+  text-align: center; line-height: 1;
+}
+.wechat-btn.disabled { background: var(--color-border); color: var(--color-text-gray); }
+
+/* ---- Popup ---- */
+.popup { position: fixed; inset: 0; z-index: 999; }
+.popup-mask { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.popup-sheet {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: #fff; border-radius: 32rpx 32rpx 0 0;
+  padding: 56rpx 48rpx calc(48rpx + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; align-items: center;
+}
+.popup-title { font-size: 36rpx; font-weight: 500; margin-bottom: 12rpx; }
+.popup-desc { font-size: 26rpx; color: var(--color-text-gray); margin-bottom: 48rpx; }
+
+.popup-phone-btn {
+  width: 100%; height: 96rpx; line-height: 96rpx; padding: 0;
+  background: var(--color-dark); color: var(--color-gold);
+  border-radius: 16rpx; font-size: 32rpx; text-align: center;
+  margin-bottom: 24rpx; box-sizing: border-box;
+}
+.popup-phone-btn::after { border: none; }
+.popup-phone-btn.done { background: #c9a96126; color: var(--color-gold); }
+
+.popup-skip-btn {
+  font-size: 28rpx; color: var(--color-text-gray); padding: 16rpx 0;
+}

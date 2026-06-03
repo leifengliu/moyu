@@ -1,0 +1,70 @@
+<view class="container">
+  <!-- Header -->
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-actions">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+    </view>
+  </view>
+
+  <!-- Image -->
+  <view class="product-image-section">
+    <image class="product-image" src="{{product.imageUrl}}" mode="aspectFill" />
+  </view>
+
+  <!-- Info -->
+  <view class="product-info-section">
+    <view class="info-row">
+      <text class="product-name serif">{{product.name}}</text>
+      <view class="price-row">
+        <text class="price-symbol">¥</text><text class="price-value">{{product.basePrice}}</text>
+      </view>
+    </view>
+    <text class="product-desc">{{product.description}}</text>
+  </view>
+
+  <!-- Spec Options -->
+  <view class="specs-section">
+    <!-- Size -->
+    <view class="spec-group">
+      <text class="spec-label">规格 SIZE</text>
+      <view class="spec-options">
+        <view class="spec-option {{selectedSize === item.specValue ? 'active' : ''}}" wx:for="{{sizes}}" wx:key="specValue" bindtap="onSelectSize" data-value="{{item.specValue}}">
+          {{item.specValue}}
+        </view>
+      </view>
+    </view>
+
+    <!-- Temperature -->
+    <view class="spec-group">
+      <text class="spec-label">温度 TEMPERATURE</text>
+      <view class="spec-options grid-4">
+        <view class="spec-option {{selectedTemp === item.specValue ? 'active' : ''}}" wx:for="{{temps}}" wx:key="specValue" bindtap="onSelectTemp" data-value="{{item.specValue}}">
+          {{item.specValue}}
+        </view>
+      </view>
+    </view>
+
+    <!-- Sugar -->
+    <view class="spec-group">
+      <text class="spec-label">甜度 SWEETNESS</text>
+      <view class="spec-options grid-4">
+        <view class="spec-option {{selectedSugar === item.specValue ? 'active' : ''}}" wx:for="{{sugars}}" wx:key="specValue" bindtap="onSelectSugar" data-value="{{item.specValue}}">
+          {{item.specValue}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Bar -->
+  <view class="bottom-bar">
+    <view class="quantity-control">
+      <view class="qty-btn" bindtap="onMinus">−</view>
+      <text class="qty-value">{{quantity}}</text>
+      <view class="qty-btn" bindtap="onPlus">+</view>
+    </view>
+    <view class="add-cart-btn" bindtap="onAddToCart">
+      加入购物车 · ¥{{totalPrice}}
+    </view>
+  </view>
+</view>

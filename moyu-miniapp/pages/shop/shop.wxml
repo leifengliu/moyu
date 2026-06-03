@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="search-wrap">
+      <view class="search-box">
+        <image class="search-icon" src="/images/search.svg" />
+        <input class="search-input" placeholder="搜索商品..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+      </view>
+    </view>
+  </view>
+
+  <view class="banner">
+    <text class="banner-tag">MOYU LIFESTYLE</text>
+    <text class="banner-title">品牌周边</text>
+    <text class="banner-desc">精选好物，咖啡生活</text>
+  </view>
+
+  <view class="product-grid">
+    <view class="product-card anim-fade-up" wx:for="{{products}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.08}}s" bindtap="onProductTap" data-id="{{item.id}}" data-item="{{item}}">
+      <image class="prod-img" src="{{item.imageUrl}}" mode="aspectFill" />
+      <view class="prod-info">
+        <text class="prod-name">{{item.name}}</text>
+        <text class="prod-desc">{{item.description}}</text>
+        <view class="prod-bottom">
+          <view class="prod-prices">
+            <block wx:if="{{isMember}}">
+              <view class="member-price"><text class="ps">¥</text><text class="pn">{{item.memberPrice}}</text></view>
+              <view class="orig-price"><text class="ps">¥</text><text class="pn">{{item.basePrice}}</text></view>
+            </block>
+            <view class="normal-price" wx:else><text class="ps">¥</text><text class="pn">{{item.basePrice}}</text></view>
+          </view>
+          <view class="add-btn" catchtap="onAddToCart" data-item="{{item}}">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cart-fab" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
+    <image class="cart-fab-icon" src="/images/cart.png" mode="aspectFit" />
+    <view class="cart-badge">{{cartCount}}</view>
+  </view>
+</view>

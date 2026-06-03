@@ -1,0 +1,47 @@
+<view class="container">
+  <!-- Header -->
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 64}}px;"></view>
+    <view class="header-content">
+      <text class="header-title serif">我的订单</text>
+      <scroll-view class="tabs" scroll-x="true">
+        <view class="tab-item {{activeTab === item.id ? 'active' : ''}}" wx:for="{{tabs}}" wx:key="id" bindtap="onTabTap" data-id="{{item.id}}">
+          {{item.name}}
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <block wx:if="{{_anim}}">
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card anim-fade-up" wx:for="{{orders}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.08}}s" bindtap="onOrderTap" data-id="{{item.id}}">
+      <view class="order-header">
+        <text class="order-no">订单号: {{item.orderNo}}</text>
+        <text class="order-status {{item.status === 'completed' ? 'completed' : 'active'}}">{{statusMap[item.status]}}</text>
+      </view>
+      <view class="order-items">
+        <view class="order-item" wx:for="{{item.items}}" wx:key="id" wx:for-item="oi">
+          <text class="oi-name">{{oi.productName}}</text>
+          <text class="oi-qty">x{{oi.quantity}}</text>
+          <text class="oi-price">¥{{oi.price}}</text>
+        </view>
+      </view>
+      <view class="order-footer">
+        <text class="order-date">{{item.createTime}}</text>
+        <view class="order-total">
+          <text class="total-label">合计</text>
+          <text class="price-symbol">¥</text><text class="total-value">{{item.totalAmount}}</text>
+        </view>
+      </view>
+      <view class="order-actions" wx:if="{{item.status === 'completed'}}">
+        <view class="action-outline" catchtap="onReorder" data-id="{{item.id}}">再来一单</view>
+        <view class="action-primary">评价</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-text">暂无订单</text>
+  </view>
+  </block>
+</view>

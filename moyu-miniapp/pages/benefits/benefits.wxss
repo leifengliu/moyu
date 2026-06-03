@@ -1,0 +1,12 @@
+.header { border-bottom: 2rpx solid #222; }
+.header-row { padding: 0 48rpx 24rpx; display: flex; align-items: center; }
+.back-btn { width: 40rpx; height: 40rpx; margin-right: 24rpx; }
+.header-title { font-size: 32rpx; color: #fff; letter-spacing: 4rpx; }
+
+.list { padding: 48rpx; }
+.item { display: flex; align-items: center; gap: 28rpx; padding: 32rpx 0; border-bottom: 2rpx solid #222; }
+.item:last-child { border-bottom: none; }
+.item-icon { font-size: 48rpx; }
+.item-info { flex: 1; }
+.item-title { font-size: 30rpx; color: #fff; display: block; margin-bottom: 8rpx; }
+.item-desc { font-size: 26rpx; color: var(--color-text-gray); display: block; }

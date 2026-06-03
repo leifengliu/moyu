@@ -1,0 +1,43 @@
+<view class="page-dark">
+  <!-- Header -->
+  <view class="header">
+    <view class="status-bar-placeholder"></view>
+    <view class="header-content">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">储值中心</text>
+      <view class="capsule-spacer"></view>
+    </view>
+  </view>
+
+  <!-- Balance Card -->
+  <view class="balance-card anim-fade-up" style="animation-delay:0.05s">
+    <text class="balance-label">储值余额（元）</text>
+    <text class="balance-value">{{balance}}</text>
+  </view>
+
+  <!-- Packages -->
+  <view class="packages-section">
+    <text class="section-title">储值套餐</text>
+    <view class="package-grid">
+      <view class="package-card {{item.isRecommend ? 'recommend' : ''}} anim-fade-up" wx:for="{{packages}}" wx:key="id" wx:for-index="i" style="animation-delay:{{0.12 + i * 0.08}}s" bindtap="onRecharge" data-id="{{item.id}}">
+        <view class="pkg-badge" wx:if="{{item.isRecommend}}">推荐</view>
+        <text class="pkg-amount">¥{{item.amount}}</text>
+        <text class="pkg-bonus">赠送{{item.bonus}}元</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Transactions -->
+  <view class="tx-section">
+    <text class="section-title">储值明细</text>
+    <view class="tx-list">
+      <view class="tx-item" wx:for="{{transactions}}" wx:key="id">
+        <view class="tx-left">
+          <text class="tx-desc">{{item.description}}</text>
+          <text class="tx-date">{{item.createTime}}</text>
+        </view>
+        <text class="tx-amount {{item.amount > 0 ? 'plus' : ''}}">{{item.amount > 0 ? '+' : ''}}{{item.amount}}</text>
+      </view>
+    </view>
+  </view>
+</view>

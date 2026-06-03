@@ -1,0 +1,32 @@
+.page-header { background: #fff; border-bottom: 2rpx solid var(--color-border); }
+.top-row { padding: 0 48rpx 24rpx; display: flex; align-items: center; justify-content: space-between; }
+.back-btn { width: 40rpx; height: 40rpx; }
+.save-btn { font-size: 28rpx; color: var(--color-dark); font-weight: 500; padding: 8rpx 16rpx; }
+
+.avatar-section { background: #fff; padding: 60rpx 0 48rpx; display: flex; flex-direction: column; align-items: center; }
+.avatar-btn { position: relative; padding: 0; margin: 0; line-height: 0; background: none; border: none; }
+.avatar-btn::after { border: none; display: none; }
+.avatar-circle { width: 168rpx; height: 168rpx; background: linear-gradient(135deg, var(--color-dark), #6B4F3E); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.avatar-img { width: 100%; height: 100%; }
+.avatar-letter { font-size: 64rpx; color: #fff; }
+.camera-badge { position: absolute; bottom: -8rpx; right: -8rpx; width: 52rpx; height: 52rpx; background: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 28rpx; }
+.avatar-hint { font-size: 24rpx; color: var(--color-text-gray); margin-top: 28rpx; }
+
+.form-sec { margin-top: 20rpx; background: #fff; border-top: 2rpx solid var(--color-border); border-bottom: 2rpx solid var(--color-border); }
+.field-block { padding: 32rpx 48rpx; border-bottom: 2rpx solid var(--color-border); }
+.field-block:last-child { border-bottom: none; }
+.field-label { font-size: 24rpx; color: var(--color-text-gray); display: block; margin-bottom: 16rpx; }
+.field-input-box { width: 100%; padding: 24rpx; background: #F5F5F3; border: 2rpx solid var(--color-border); font-size: 28rpx; color: var(--color-text); box-sizing: border-box; }
+.field-display { display: flex; justify-content: space-between; align-items: center; padding: 24rpx; background: #F5F5F3; border: 2rpx solid var(--color-border); font-size: 28rpx; }
+.field-link { color: var(--color-dark); font-size: 26rpx; }
+
+.gender-group { display: flex; gap: 20rpx; }
+.gender-btn { flex: 1; padding: 24rpx 0; text-align: center; font-size: 28rpx; background: #F5F5F3; border: 2rpx solid var(--color-border); color: var(--color-text-gray); }
+.gender-btn.active { background: var(--color-dark); color: #fff; border-color: var(--color-dark); }
+
+.account-card { margin: 32rpx 48rpx; padding: 36rpx; background: linear-gradient(135deg, #F5F5F3, #fff); border: 2rpx solid var(--color-border); }
+.acct-title { font-size: 28rpx; color: var(--color-text); font-weight: 500; display: block; margin-bottom: 16rpx; }
+.acct-row { font-size: 24rpx; color: var(--color-text-gray); display: block; margin-bottom: 8rpx; }
+
+.logout-section { padding: 40rpx 48rpx 80rpx; }
+.logout-btn { border: 2rpx solid #E74C3C; color: #E74C3C; text-align: center; padding: 28rpx 0; font-size: 30rpx; }

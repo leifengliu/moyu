@@ -1,0 +1,20 @@
+<view class="page-dark">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-row">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">会员福利</text>
+      <view style="width:174rpx;"></view>
+    </view>
+  </view>
+
+  <view class="list">
+    <view class="item anim-fade-up" wx:for="{{items}}" wx:key="title" wx:for-index="i" style="animation-delay:{{i * 0.08}}s">
+      <text class="item-icon">{{item.icon}}</text>
+      <view class="item-info">
+        <text class="item-title">{{item.title}}</text>
+        <text class="item-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,28 @@
+<view class="page-dark">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-row">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">优惠券</text>
+      <view style="width:174rpx;"></view>
+    </view>
+  </view>
+
+  <view class="coupon-list">
+    <view class="coupon-card anim-fade-up {{item.isUsed || item.isExpired ? 'disabled' : ''}}" wx:for="{{coupons}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.08}}s">
+      <view class="cc-left">
+        <text class="cc-value" wx:if="{{item.type === 'FIXED'}}">¥{{item.discountValue}}</text>
+        <text class="cc-value" wx:else>{{item.discountValue}}折</text>
+        <text class="cc-cond" wx:if="{{item.minAmount > 0}}">满¥{{item.minAmount}}可用</text>
+        <text class="cc-cond" wx:else>无门槛</text>
+      </view>
+      <view class="cc-right">
+        <text class="cc-name">{{item.name}}</text>
+        <text class="cc-date">有效期至 {{item.expireTime}}</text>
+        <view class="cc-status {{item.isUsed || item.isExpired ? 'used' : ''}}">
+          {{item.isUsed ? '已使用' : item.isExpired ? '已过期' : '去使用'}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

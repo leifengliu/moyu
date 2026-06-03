@@ -1,0 +1,49 @@
+<view class="page-dark">
+  <!-- Header -->
+  <view class="header">
+    <view class="status-bar-placeholder"></view>
+    <view class="header-content">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">积分商城</text>
+      <view class="capsule-spacer"></view>
+    </view>
+  </view>
+
+  <!-- Points Balance -->
+  <view class="points-card anim-fade-up" style="animation-delay:0.05s">
+    <text class="points-label">我的积分</text>
+    <text class="points-value">{{balance}}</text>
+  </view>
+
+  <!-- Products -->
+  <view class="products-section">
+    <text class="section-title">积分兑换</text>
+    <view class="product-grid">
+      <view class="points-product anim-fade-up" wx:for="{{products}}" wx:key="id" wx:for-index="i" style="animation-delay:{{0.12 + i * 0.08}}s">
+        <image class="pp-image" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="pp-info">
+          <text class="pp-name">{{item.name}}</text>
+          <view class="pp-bottom">
+            <text class="pp-points">{{item.points}} 积分</text>
+            <text class="pp-stock">剩余 {{item.stock}}</text>
+          </view>
+          <view class="pp-btn" bindtap="onRedeem" data-id="{{item.id}}">立即兑换</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Records -->
+  <view class="records-section">
+    <text class="section-title">积分明细</text>
+    <view class="records-list">
+      <view class="rec-item" wx:for="{{records}}" wx:key="id">
+        <view>
+          <text class="rec-desc">{{item.description}}</text>
+          <text class="rec-date">{{item.createTime}}</text>
+        </view>
+        <text class="rec-points {{item.points > 0 ? 'plus' : ''}}">{{item.points > 0 ? '+' : ''}}{{item.points}}</text>
+      </view>
+    </view>
+  </view>
+</view>

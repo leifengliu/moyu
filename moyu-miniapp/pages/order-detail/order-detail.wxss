@@ -1,0 +1,59 @@
+.container { padding-bottom: 80rpx; }
+.container.has-bar { padding-bottom: 240rpx; }
+
+.header-content { padding: 0 48rpx 24rpx; display: flex; align-items: center; }
+.back-btn { width: 40rpx; height: 40rpx; }
+.capsule-spacer { width: 174rpx; flex-shrink: 0; }
+
+.section { padding: 0 48rpx; margin-bottom: 24rpx; }
+
+/* ---- Status Card ---- */
+.status-card { padding: 48rpx; border: 2rpx solid var(--color-border); border-radius: 16rpx; }
+.status-head { display: flex; align-items: center; gap: 24rpx; margin-bottom: 32rpx; }
+.status-icon-wrap { width: 80rpx; height: 80rpx; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; border: 4rpx solid #fff; }
+.status-icon { font-size: 40rpx; color: var(--color-gold); }
+.status-text { font-size: 40rpx; }
+.pickup-code-wrap { background: #fff; border: 2rpx solid var(--color-border); border-radius: 16rpx; padding: 40rpx; text-align: center; }
+.pickup-code { font-size: 96rpx; display: block; color: var(--color-text); margin-bottom: 10rpx; }
+.pickup-label { font-size: 22rpx; color: var(--color-text-gray); letter-spacing: 4rpx; }
+
+/* ---- Card ---- */
+.card { background: #fff; border: 2rpx solid var(--color-border); border-radius: 16rpx; padding: 36rpx; }
+.card-title { font-size: 32rpx; color: var(--color-text); display: block; margin-bottom: 28rpx; }
+
+/* ---- Order Items ---- */
+.oi-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24rpx; }
+.oi-left { flex: 1; }
+.oi-name { font-size: 28rpx; color: var(--color-text); display: block; margin-bottom: 4rpx; }
+.oi-specs { font-size: 24rpx; color: var(--color-text-gray); }
+.oi-right { text-align: right; margin-left: 24rpx; }
+.oi-qty { font-size: 24rpx; color: var(--color-text-gray); display: block; margin-bottom: 4rpx; }
+.oi-price { font-size: 28rpx; color: var(--color-gold); }
+.oi-divider { height: 2rpx; background: var(--color-border); margin: 24rpx 0; }
+.oi-total { display: flex; justify-content: space-between; align-items: center; }
+.total-label { font-size: 28rpx; color: var(--color-text-gray); }
+.price-val { font-size: 48rpx; color: var(--color-gold); }
+
+/* ---- Timeline ---- */
+.timeline { padding-left: 4rpx; }
+.tl-step { display: flex; align-items: flex-start; gap: 20rpx; }
+.tl-marker { display: flex; flex-direction: column; align-items: center; width: 36rpx; flex-shrink: 0; }
+.tl-dot { width: 20rpx; height: 20rpx; border-radius: 50%; background: var(--color-border); }
+.tl-dot.on { background: var(--color-gold); }
+.tl-line { width: 4rpx; flex: 1; min-height: 56rpx; background: var(--color-border); }
+.tl-line.on { background: var(--color-gold); }
+.tl-body { padding-bottom: 28rpx; }
+.tl-label { font-size: 28rpx; color: var(--color-text); display: block; }
+.tl-label.off { color: var(--color-text-gray); }
+.tl-time { font-size: 24rpx; color: var(--color-text-gray); display: block; margin-top: 4rpx; }
+
+/* ---- Order Info ---- */
+.info-row { display: flex; justify-content: space-between; margin-bottom: 18rpx; }
+.info-row:last-child { margin-bottom: 0; }
+.ik { font-size: 28rpx; color: var(--color-text-gray); }
+.iv { font-size: 28rpx; color: var(--color-text); }
+
+/* ---- Bottom Bar ---- */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2rpx solid var(--color-border); padding: 24rpx 48rpx; padding-bottom: calc(24rpx + env(safe-area-inset-bottom)); display: flex; gap: 24rpx; }
+.cancel-btn { flex: 1; text-align: center; padding: 28rpx 0; border: 2rpx solid var(--color-border); border-radius: 16rpx; font-size: 32rpx; color: var(--color-text-gray); }
+.pay-btn { flex: 1; text-align: center; padding: 28rpx 0; background: var(--color-dark); color: #fff; border-radius: 16rpx; font-size: 32rpx; }

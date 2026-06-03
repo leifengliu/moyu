@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-bar">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">开通会员</text>
+      <view style="width:200rpx;"></view>
+    </view>
+  </view>
+
+  <view class="hero">
+    <text class="hero-title">MOYU 会员</text>
+    <text class="hero-desc">享受专属优惠，每天一杯好咖啡</text>
+  </view>
+
+  <view class="section benefits-sec">
+    <text class="sec-title">会员权益</text>
+    <view class="benefits-card">
+      <view class="benefit-row anim-fade-up" wx:for="{{benefits}}" wx:key="*this" wx:for-index="i" style="animation-delay:{{i * 0.05}}s">
+        <view class="check-box">✓</view>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section plans-sec">
+    <text class="sec-title">选择套餐</text>
+    <view class="plan-card anim-fade-up {{item.popular ? 'popular' : ''}}" wx:for="{{plans}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.1}}s" bindtap="onSubscribe">
+      <view class="plan-badge" wx:if="{{item.popular}}">推荐</view>
+      <view class="plan-info">
+        <text class="plan-name">{{item.name}}</text>
+        <text class="plan-desc">{{item.desc}}</text>
+        <text class="plan-discount" wx:if="{{item.discount}}">{{item.discount}}</text>
+      </view>
+      <view class="plan-price">
+        <text class="pp-symbol">¥</text><text class="pp-value">{{item.price}}</text>
+        <text class="pp-period">/ {{item.period}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cta-sec">
+    <view class="cta-btn" bindtap="onSubscribe">立即开通</view>
+    <text class="cta-note">开通即视为同意《会员服务协议》</text>
+  </view>
+</view>

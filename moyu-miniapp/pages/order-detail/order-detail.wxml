@@ -1,0 +1,85 @@
+<view class="container {{order.status === 'pending' ? 'has-bar' : ''}}">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-content">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <view class="capsule-spacer"></view>
+    </view>
+  </view>
+
+  <!-- Status Card -->
+  <view class="section">
+    <view class="status-card" style="background: {{statusConfig.bg}};">
+      <view class="status-head">
+        <view class="status-icon-wrap">
+          <text class="status-icon">●</text>
+        </view>
+        <text class="status-text serif">{{statusConfig.text}}</text>
+      </view>
+      <!-- Pickup Code -->
+      <view class="pickup-code-wrap" wx:if="{{order.status === 'ready'}}">
+        <text class="pickup-code serif">{{order.pickupCode}}</text>
+        <text class="pickup-label">取餐码 PICKUP CODE</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Order Items -->
+  <view class="section">
+    <view class="card">
+      <text class="card-title serif">订单商品</text>
+      <view class="oi-item" wx:for="{{order.items}}" wx:key="id">
+        <view class="oi-left">
+          <text class="oi-name">{{item.productName}}</text>
+          <text class="oi-specs" wx:if="{{item.size}}">{{item.size}} / {{item.temp}} / {{item.sugar}}</text>
+        </view>
+        <view class="oi-right">
+          <text class="oi-qty">×{{item.quantity}}</text>
+          <text class="oi-price">¥{{item.price}}</text>
+        </view>
+      </view>
+      <view class="oi-divider"></view>
+      <view class="oi-total">
+        <text class="total-label">合计</text>
+        <view class="total-price">
+          <text class="price-sym">¥</text><text class="price-val serif">{{order.payAmount || order.totalAmount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Timeline -->
+  <view class="section">
+    <view class="card">
+      <text class="card-title serif">订单进度</text>
+      <view class="timeline">
+        <view class="tl-step" wx:for="{{timeline}}" wx:key="index">
+          <view class="tl-marker">
+            <view class="tl-dot {{item.active ? 'on' : ''}}"></view>
+            <view class="tl-line {{item.active ? 'on' : ''}}" wx:if="{{index < timeline.length - 1}}"></view>
+          </view>
+          <view class="tl-body">
+            <text class="tl-label {{item.active ? '' : 'off'}}">{{item.label}}</text>
+            <text class="tl-time" wx:if="{{item.time}}">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Order Info -->
+  <view class="section">
+    <view class="card">
+      <text class="card-title serif">订单信息</text>
+      <view class="info-row"><text class="ik">订单号</text><text class="iv">{{order.orderNo}}</text></view>
+      <view class="info-row"><text class="ik">下单时间</text><text class="iv">{{order.createTime}}</text></view>
+      <view class="info-row"><text class="ik">支付方式</text><text class="iv">{{order.payType === 'WALLET' ? '储值支付' : '微信支付'}}</text></view>
+    </view>
+  </view>
+
+  <!-- Bottom Action -->
+  <view class="bottom-bar" wx:if="{{order.status === 'pending'}}">
+    <view class="cancel-btn" bindtap="onCancel">取消订单</view>
+    <view class="pay-btn" bindtap="onPay">{{statusConfig.action}}</view>
+  </view>
+</view>

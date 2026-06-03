@@ -1,0 +1,61 @@
+<view class="menu-page">
+  <!-- Header -->
+  <view class="header">
+    <view class="status-bar-placeholder"></view>
+    <view class="header-bar">
+      <text class="header-title">点单</text>
+      <view style="width:200rpx;"></view>
+    </view>
+    <view class="search-wrap">
+      <view class="search-box">
+        <image class="search-icon" src="/images/search.svg" />
+        <input class="search-input" placeholder="搜索商品..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类 + 商品 左右布局 -->
+  <view class="main-area">
+    <!-- 左侧分类导航 -->
+    <scroll-view class="sidebar" scroll-y="true">
+      <view class="cat-item {{activeCategory === item.code ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-code="{{item.code}}">
+        {{item.name}}
+      </view>
+    </scroll-view>
+
+    <!-- 右侧商品 -->
+    <scroll-view class="content" scroll-y="true">
+      <block wx:if="{{_anim}}">
+      <view class="product-item anim-fade-up" wx:for="{{products}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.05}}s" bindtap="onProductTap" data-id="{{item.id}}">
+        <image class="prod-img" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="prod-info">
+          <text class="prod-name">{{item.name}}</text>
+          <text class="prod-desc">{{item.description}}</text>
+          <view class="prod-bottom">
+            <view class="prod-prices">
+              <block wx:if="{{isMember}}">
+                <view class="member-price">
+                  <text class="price-sym">¥</text><text class="price-num">{{item.memberPrice}}</text>
+                </view>
+                <view class="orig-price">
+                  <text class="price-sym">¥</text><text class="price-num">{{item.basePrice}}</text>
+                </view>
+              </block>
+              <view class="normal-price" wx:else>
+                <text class="price-sym">¥</text><text class="price-num">{{item.basePrice}}</text>
+              </view>
+            </view>
+            <view class="add-btn" catchtap="onAddToCart" data-item="{{item}}">+</view>
+          </view>
+        </view>
+      </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- Cart FAB -->
+  <view class="cart-fab" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
+    <image class="cart-fab-icon" src="/images/cart.png" mode="aspectFit" />
+    <view class="cart-badge">{{cartCount}}</view>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<view class="login-page">
+  <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+
+  <view class="login-content">
+    <view class="logo-section anim-scale-in" style="animation-delay:0s">
+      <view class="logo-icon">☕</view>
+      <text class="logo-name serif">摸鱼咖啡</text>
+      <text class="logo-sub">MOYU COFFEE</text>
+    </view>
+
+    <view class="form-section anim-fade-up" style="animation-delay:0.15s">
+      <view class="agreement">
+        <view class="check-wrap" bindtap="onAgreeToggle">
+          <view class="checkbox {{agreed ? 'checked' : ''}}">
+            <text wx:if="{{agreed}}" style="color:#C9A961;font-size:20rpx;">✓</text>
+          </view>
+        </view>
+        <text class="agree-text">我已阅读并同意<text class="link">《用户协议》</text>和<text class="link">《隐私政策》</text></text>
+      </view>
+
+      <view class="wechat-btn {{agreed ? '' : 'disabled'}}" bindtap="onWechatLogin">
+        微信一键登录
+      </view>
+    </view>
+  </view>
+
+  <!-- Phone binding popup -->
+  <view class="popup" wx:if="{{showPhonePopup}}">
+    <view class="popup-mask" bindtap="onFinishPhone"></view>
+    <view class="popup-sheet">
+      <text class="popup-title">手机号授权</text>
+      <text class="popup-desc">授权手机号后可享受完整的会员服务</text>
+
+      <button class="popup-phone-btn {{phoneDone ? 'done' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+        <text wx:if="{{!phoneDone}}">获取手机号</text>
+        <text wx:else>已绑定 ✓</text>
+      </button>
+
+      <view class="popup-skip-btn" bindtap="onFinishPhone">
+        {{phoneDone ? '完成' : '跳过'}}
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+.header { border-bottom: 2rpx solid #222; }
+.header-row { padding: 0 48rpx 24rpx; display: flex; align-items: center; }
+.back-btn { width: 40rpx; height: 40rpx; margin-right: 24rpx; }
+.header-title { font-size: 32rpx; color: #fff; letter-spacing: 4rpx; }
+
+.list { padding: 48rpx; }
+.item { display: flex; align-items: center; gap: 28rpx; padding: 28rpx 0; border-bottom: 2rpx solid #222; }
+.c-icon { font-size: 44rpx; }
+.c-type { font-size: 28rpx; color: #fff; display: block; margin-bottom: 4rpx; }
+.c-val { font-size: 24rpx; color: var(--color-text-gray); }
+
+.section-title { font-size: 28rpx; color: #fff; margin: 48rpx 0 24rpx; font-weight: 500; }
+.faq-item { padding: 28rpx 0; border-bottom: 2rpx solid #222; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-size: 28rpx; color: #fff; display: block; margin-bottom: 10rpx; }
+.faq-a { font-size: 26rpx; color: var(--color-text-gray); display: block; line-height: 1.6; }

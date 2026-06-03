@@ -1,0 +1,26 @@
+<view class="page-dark">
+  <view class="header">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
+    <view class="header-row">
+      <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
+      <text class="header-title">客服中心</text>
+      <view style="width:174rpx;"></view>
+    </view>
+  </view>
+
+  <view class="list">
+    <view class="item anim-fade-up" wx:for="{{contacts}}" wx:key="type" wx:for-index="i" style="animation-delay:{{i * 0.08}}s">
+      <text class="c-icon">{{item.icon}}</text>
+      <view>
+        <text class="c-type">{{item.type}}</text>
+        <text class="c-val">{{item.val}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">常见问题</view>
+    <view class="faq-item anim-fade-up" wx:for="{{faqs}}" wx:key="q" wx:for-index="i" style="animation-delay:{{0.3 + i * 0.08}}s">
+      <text class="faq-q">{{item.q}}</text>
+      <text class="faq-a">{{item.a}}</text>
+    </view>
+  </view>
+</view>

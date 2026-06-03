@@ -1,0 +1,41 @@
+.header {
+  background: var(--color-dark); padding-top: 0;
+  padding: 48rpx 48rpx 48rpx;
+}
+.header-info {
+  display: flex; align-items: center; gap: 24rpx; margin-bottom: 32rpx;
+}
+.avatar-box {
+  width: 108rpx; height: 108rpx; background: var(--color-gold);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.avatar-img { width: 108rpx; height: 108rpx; border-radius: 50%; }
+.avatar-text { font-size: 48rpx; color: var(--color-dark); }
+.user-name { font-size: 36rpx; color: #fff; display: block; margin-bottom: 4rpx; }
+.user-sub { font-size: 26rpx; color: rgba(255,255,255,0.6); }
+
+.sign-in-btn {
+  width: 100%; background: rgba(255,255,255,0.1);
+  border: 2rpx solid rgba(255,255,255,0.2);
+  border-radius: 16rpx; padding: 24rpx 0;
+  text-align: center; color: #fff; font-size: 28rpx;
+}
+
+.stats-section { padding: 0 48rpx; margin-top: -32rpx; }
+.stats-card { padding: 32rpx; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24rpx; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 36rpx; font-weight: 500; display: block; margin-bottom: 8rpx; }
+.stat-label { font-size: 24rpx; color: var(--color-text-gray); }
+
+.menu-section { padding: 32rpx 48rpx; }
+.menu-card { overflow: hidden; }
+.menu-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 32rpx; border-bottom: 2rpx solid var(--color-border);
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-left { display: flex; align-items: center; gap: 16rpx; }
+.menu-icon { width: 40rpx; height: 40rpx; }
+.menu-label { font-size: 28rpx; }
+.menu-arrow { font-size: 40rpx; color: var(--color-text-light); }

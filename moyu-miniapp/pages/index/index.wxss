@@ -1,0 +1,32 @@
+.header { background: var(--color-dark); position: sticky; top: 0; z-index: 100; }
+.nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 0 48rpx 24rpx; }
+.brand { font-size: 40rpx; color: var(--color-gold); letter-spacing: 4rpx; font-family: 'Times New Roman', serif; }
+
+.search-section { background: var(--color-dark); padding: 24rpx 48rpx 48rpx; }
+.search-bar { display: flex; align-items: center; gap: 16rpx; background: rgba(255,255,255,0.1); padding: 20rpx 32rpx; border: 2rpx solid rgba(255,255,255,0.2); }
+.search-icon { width: 36rpx; height: 36rpx; }
+.search-input { flex: 1; font-size: 28rpx; color: #fff; }
+
+.banner-section { padding: 48rpx; }
+.banner { background: var(--color-dark); padding: 56rpx 48rpx; }
+.banner-tag { font-size: 22rpx; color: var(--color-gold); letter-spacing: 4rpx; margin-bottom: 16rpx; display: block; }
+.banner-title { font-size: 48rpx; color: #fff; margin-bottom: 12rpx; display: block; font-family: 'Times New Roman', serif; }
+.banner-desc { font-size: 26rpx; color: rgba(255,255,255,0.7); }
+
+.quick-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24rpx; padding: 0 48rpx 48rpx; background: #fff; }
+.quick-card { padding: 56rpx 36rpx; display: flex; flex-direction: column; gap: 16rpx; position: relative; overflow: hidden; }
+.quick-card.link-menu { background: linear-gradient(135deg, #4A3428, #6B4F3E); }
+.quick-card.link-shop { background: linear-gradient(135deg, #6B4F3E, #8B6F5E); }
+.quick-icon { font-size: 52rpx; }
+.quick-label { font-size: 32rpx; color: #fff; font-weight: 500; }
+
+.products-section { padding: 24rpx 48rpx; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32rpx; }
+.section-title { font-size: 36rpx; font-family: 'Times New Roman', serif; }
+.section-sub { font-size: 22rpx; color: var(--color-text-gray); letter-spacing: 2rpx; }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24rpx; padding-bottom: 40rpx; }
+.product-card { background: #fff; overflow: hidden; border: 2rpx solid var(--color-border); }
+.product-image { width: 100%; height: 340rpx; background: var(--color-bg); }
+.product-info { padding: 24rpx; }
+.product-name { font-size: 28rpx; color: var(--color-text); margin-bottom: 12rpx; display: block; }
+.product-price { display: flex; align-items: baseline; gap: 4rpx; color: var(--color-dark); }

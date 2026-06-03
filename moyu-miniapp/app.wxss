@@ -1,0 +1,91 @@
+page {
+  /* ---- Light theme (home/menu/orders/profile/membership/login/userinfo) ---- */
+  --color-bg: #FAFAF8;
+  --color-card: #FFFFFF;
+  --color-dark: #4A3428;
+  --color-gold: #C9A67A;
+  --color-border: #E5E3DF;
+  --color-text: #2C2C2C;
+  --color-text-gray: #A09C97;
+  --color-text-light: #C5C0BB;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 28rpx;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* ---- Dark theme pages — override via page class ---- */
+.page-dark {
+  --color-bg: #000000;
+  --color-card: #111111;
+  --color-dark: #1A1A1A;
+  --color-gold: #C9A961;
+  --color-border: #222222;
+  --color-text: #FFFFFF;
+  --color-text-gray: rgba(255,255,255,0.5);
+  --color-text-light: rgba(255,255,255,0.3);
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  padding-bottom: 80rpx;
+}
+
+.container {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+.container-dark {
+  min-height: 100vh;
+}
+
+.status-bar-placeholder {
+  height: 64rpx;
+}
+
+.serif {
+  font-family: 'Times New Roman', Georgia, serif;
+}
+
+/* ---- 通用样式 ---- */
+.btn-primary {
+  background-color: var(--color-dark);
+  color: #fff;
+  border-radius: 0rpx;
+  padding: 28rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+.btn-outline {
+  border: 2rpx solid var(--color-border);
+  padding: 28rpx 0;
+  text-align: center;
+  color: var(--color-text);
+  font-size: 30rpx;
+}
+.card {
+  background: var(--color-card);
+  border: 2rpx solid var(--color-border);
+}
+.price {
+  color: var(--color-gold);
+}
+.price-symbol { font-size: 24rpx; }
+.price-value { font-size: 36rpx; font-weight: 500; }
+
+/* ---- 入场动画 ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.anim-fade-up  { opacity: 0; animation: fadeUp 0.4s ease-out forwards; }
+.anim-fade-in  { opacity: 0; animation: fadeIn 0.5s ease-out forwards; }
+.anim-scale-in { opacity: 0; animation: scaleIn 0.4s ease-out forwards; }
