@@ -66,7 +66,8 @@ Page({
     try {
       const res = await api.get('/api/v1/product/list', params, false);
       this.setData({ products: (res.data.records || []).map(p => ({
-        ...p, memberPrice: Math.round(p.basePrice * 0.9)
+        ...p, memberPrice: Math.round(p.basePrice * 0.9),
+        imageUrl: p.imageUrl || '/images/drink.png'
       })) });
     } catch (e) {
       this.setData({ products: [] });

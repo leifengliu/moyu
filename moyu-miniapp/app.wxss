@@ -89,3 +89,12 @@ page {
 .anim-fade-up  { opacity: 0; animation: fadeUp 0.4s ease-out forwards; }
 .anim-fade-in  { opacity: 0; animation: fadeIn 0.5s ease-out forwards; }
 .anim-scale-in { opacity: 0; animation: scaleIn 0.4s ease-out forwards; }
+
+/* ---- Tap反馈 (对应 framer-motion whileTap) ---- */
+button, .btn-primary, .btn-outline, .product-card, .category-item, .order-card, .menu-item, .plan-card, .package-card, .points-product {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+button:active, .btn-primary:active, .product-card:active, .category-item:active, .order-card:active, .add-btn:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}

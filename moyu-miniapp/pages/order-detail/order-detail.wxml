@@ -17,7 +17,7 @@
         <text class="status-text serif">{{statusConfig.text}}</text>
       </view>
       <!-- Pickup Code -->
-      <view class="pickup-code-wrap" wx:if="{{order.status === 'ready'}}">
+      <view class="pickup-code-wrap" wx:if="{{order.status === 'preparing' || order.status === 'ready' || order.status === 'completed'}}">
         <text class="pickup-code serif">{{order.pickupCode}}</text>
         <text class="pickup-label">取餐码 PICKUP CODE</text>
       </view>

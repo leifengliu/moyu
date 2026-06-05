@@ -24,8 +24,8 @@ Page({
       const statusConfig = {
         pending: { text: '待付款', color: '#C9A961', bg: '#F8F6F3', action: '立即支付' },
         paid: { text: '已支付', color: '#C9A961', bg: '#F8F6F3', action: null },
-        preparing: { text: '制作中', color: '#C9A961', bg: '#F8F6F3', action: null },
-        ready: { text: '待取餐', color: '#C9A961', bg: '#F8F6F3', action: '查看取餐码' },
+        preparing: { text: '制作中', color: '#C9A961', bg: '#F8F6F3', action: '查看取餐码' },
+        ready: { text: '待取餐', color: '#C9A961', bg: '#F8F6F3', action: null },
         completed: { text: '已完成', color: '#1A1A1A', bg: '#E8DED3', action: null }
       };
 

@@ -24,7 +24,8 @@ Page({
   async loadProducts() {
     try {
       const res = await api.get('/api/v1/product/list', { page: 1, size: 10 }, false);
-      this.setData({ products: res.data.records || [] });
+      const products = (res.data.records || []).map(p => ({...p, imageUrl: p.imageUrl || '/images/drink.png'}));
+      this.setData({ products });
     } catch (e) { console.error(e); }
   },
 

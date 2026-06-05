@@ -22,12 +22,16 @@ public class JwtTokenProvider {
     }
 
     public String generateToken(Long userId, String openid) {
+        return generateToken(userId, openid, "CUSTOMER");
+    }
+
+    public String generateToken(Long userId, String openid, String role) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
-
         return Jwts.builder()
                 .subject(String.valueOf(userId))
                 .claim("openid", openid)
+                .claim("role", role)
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(key)

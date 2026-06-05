@@ -1,6 +1,4 @@
 <view class="login-page">
-  <view class="status-bar-placeholder" style="height: {{statusBarHeight || 44}}px;"></view>
-
   <view class="login-content">
     <view class="logo-section anim-scale-in" style="animation-delay:0s">
       <view class="logo-icon">☕</view>

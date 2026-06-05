@@ -22,7 +22,7 @@ Page({
         product: {
           id: options.id,
           name: decodeURIComponent(options.name || ''),
-          imageUrl: decodeURIComponent(options.img || ''),
+          imageUrl: decodeURIComponent(options.img || '/images/clothes.png'),
           basePrice: parseFloat(options.price) || 0,
           description: ''
         },
@@ -37,6 +37,7 @@ Page({
   async loadProduct() {
     const res = await api.get(`/api/v1/product/${this.data.id}`, {}, false);
     const product = res.data;
+    product.imageUrl = product.imageUrl || '/images/clothes.png';
     const sizes = this.extractSpec(product.specs, '规格');
     const temps = this.extractSpec(product.specs, '温度');
     const sugars = this.extractSpec(product.specs, '甜度');

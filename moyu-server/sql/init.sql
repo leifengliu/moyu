@@ -269,14 +269,17 @@ INSERT INTO `prd_category` (`name`, `code`, `sort_order`, `icon`) VALUES
 -- 商品
 -- -------------------------------------------
 INSERT INTO `prd_product` (`id`, `category_id`, `name`, `description`, `image_url`, `base_price`, `status`, `is_recommend`, `is_new`, `sales_count`, `sort_order`) VALUES
-(1, 2, '拿铁咖啡', '经典浓郁，奶香十足，选用优质咖啡豆搭配香醇牛奶', '/images/latte.jpg', 28.00, 1, 1, 0, 520, 1),
-(2, 2, '美式咖啡', '纯粹黑咖啡，提神醒脑，适合追求纯粹咖啡风味的你', '/images/americano.jpg', 22.00, 1, 1, 0, 430, 2),
-(3, 2, '冰咖啡', '冰爽清凉，夏日必备，消暑提神两不误', '/images/iced-coffee.jpg', 30.00, 1, 1, 1, 380, 3),
-(4, 2, '卡布奇诺', '绵密奶泡，口感丰富，经典意式咖啡的代表之作', '/images/cappuccino.jpg', 26.00, 1, 1, 0, 310, 4),
-(5, 3, '摩卡咖啡', '巧克力与咖啡的完美融合，甜蜜与醇厚的双重享受', '/images/mocha.jpg', 32.00, 1, 0, 1, 250, 5),
-(6, 3, '抹茶拿铁', '清新抹茶，健康好喝，日式抹茶遇见意式拿铁', '/images/matcha-latte.jpg', 32.00, 1, 0, 1, 200, 6),
-(7, 1, '可颂', '现烤可颂，酥脆可口，搭配咖啡绝佳伴侣', '/images/croissant.jpg', 18.00, 1, 0, 1, 180, 7),
-(8, 4, '咖啡豆', '精选阿拉比卡咖啡豆，产地直采，家用首选', '/images/beans.jpg', 88.00, 1, 0, 0, 90, 8);
+(1, 2, '拿铁咖啡', '经典浓郁，奶香十足，选用优质咖啡豆搭配香醇牛奶', '/images/drink.png', 28.00, 1, 1, 0, 520, 1),
+(2, 2, '美式咖啡', '纯粹黑咖啡，提神醒脑，适合追求纯粹咖啡风味的你', '/images/drink.png', 22.00, 1, 1, 0, 430, 2),
+(3, 2, '冰咖啡', '冰爽清凉，夏日必备，消暑提神两不误', '/images/drink.png', 30.00, 1, 1, 1, 380, 3),
+(4, 2, '卡布奇诺', '绵密奶泡，口感丰富，经典意式咖啡的代表之作', '/images/drink.png', 26.00, 1, 1, 0, 310, 4),
+(5, 3, '摩卡咖啡', '巧克力与咖啡的完美融合，甜蜜与醇厚的双重享受', '/images/drink.png', 32.00, 1, 0, 1, 250, 5),
+(6, 3, '抹茶拿铁', '清新抹茶，健康好喝，日式抹茶遇见意式拿铁', '/images/drink.png', 32.00, 1, 0, 1, 200, 6),
+(7, 1, '可颂', '现烤可颂，酥脆可口，搭配咖啡绝佳伴侣', '/images/drink.png', 18.00, 1, 0, 1, 180, 7),
+(8, 4, '咖啡豆', '精选阿拉比卡咖啡豆，产地直采，家用首选', '/images/clothes-test.png', 88.00, 1, 0, 0, 90, 8),
+(9, 4, '品牌T恤', '100%纯棉，经典Logo，摸鱼咖啡联名款', '/images/clothes-test.png', 199.00, 1, 0, 0, 0, 9),
+(10, 4, '帆布袋', '环保耐用，时尚百搭，日常出行必备', '/images/clothes-test.png', 59.00, 1, 0, 0, 0, 10),
+(11, 4, '帽子', '棒球帽，刺绣Logo，潮流搭配', '/images/clothes-test.png', 89.00, 1, 0, 0, 0, 11);
 
 -- -------------------------------------------
 -- 商品规格 (SIZE/TEMP/SUGAR)
@@ -321,10 +324,10 @@ INSERT INTO `wlt_recharge_package` (`id`, `amount`, `bonus`, `is_recommend`, `so
 -- 积分兑换商品
 -- -------------------------------------------
 INSERT INTO `pts_product` (`id`, `name`, `image_url`, `points`, `stock`) VALUES
-(1, '拿铁券', '/images/latte.jpg', 200, 50),
-(2, '美式券', '/images/americano.jpg', 150, 80),
-(3, '可颂券', '/images/croissant.jpg', 100, 100),
-(4, '精品咖啡豆', '/images/beans.jpg', 500, 20);
+(1, '拿铁券', '/images/drink.png', 200, 50),
+(2, '美式券', '/images/drink.png', 150, 80),
+(3, '可颂券', '/images/drink.png', 100, 100),
+(4, '精品咖啡豆', '/images/drink.png', 500, 20);
 
 -- -------------------------------------------
 -- 门店
@@ -381,11 +384,11 @@ INSERT INTO `ord_order` (`id`, `order_no`, `user_id`, `store_id`, `status`, `tot
 (3, '202603231645000003', 1, 1, 'ready', 48.00, 0.00, 48.00, 'WALLET', '2026-03-23 16:45:08', '8888', '2026-03-23 16:45:00');
 
 INSERT INTO `ord_order_item` (`order_id`, `product_id`, `product_name`, `product_image`, `size`, `temp`, `sugar`, `price`, `quantity`, `subtotal`) VALUES
-(1, 1, '拿铁咖啡', '/images/latte.jpg', '中杯', '热饮', '标准糖', 28.00, 1, 28.00),
-(1, 2, '美式咖啡', '/images/americano.jpg', '大杯', '热饮', '标准糖', 24.00, 1, 24.00),
-(2, 4, '卡布奇诺', '/images/cappuccino.jpg', '中杯', '热饮', '标准糖', 26.00, 2, 52.00),
-(3, 3, '冰咖啡', '/images/iced-coffee.jpg', '大杯', '正常冰', '标准糖', 30.00, 1, 30.00),
-(3, 7, '可颂', '/images/croissant.jpg', NULL, NULL, NULL, 18.00, 1, 18.00);
+(1, 1, '拿铁咖啡', '/images/drink.png', '中杯', '热饮', '标准糖', 28.00, 1, 28.00),
+(1, 2, '美式咖啡', '/images/drink.png', '大杯', '热饮', '标准糖', 24.00, 1, 24.00),
+(2, 4, '卡布奇诺', '/images/drink.png', '中杯', '热饮', '标准糖', 26.00, 2, 52.00),
+(3, 3, '冰咖啡', '/images/drink.png', '大杯', '正常冰', '标准糖', 30.00, 1, 30.00),
+(3, 7, '可颂', '/images/drink.png', NULL, NULL, NULL, 18.00, 1, 18.00);
 
 INSERT INTO `ord_order_log` (`order_id`, `from_status`, `to_status`, `remark`, `create_time`) VALUES
 (1, NULL, 'pending', '用户下单', '2026-03-25 14:30:00'),

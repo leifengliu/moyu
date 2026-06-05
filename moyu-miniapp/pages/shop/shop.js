@@ -30,21 +30,37 @@ Page({
   },
 
   async loadProducts() {
-    // 临时：使用测试图片的周边商品
-    this.setData({ products: [
-      { id: 101, name: '品牌T恤', description: '100%纯棉，经典Logo', basePrice: 199, memberPrice: 179, imageUrl: '/images/clothes-test.png', detailUrl: '/images/clothes-test-detail.webp' },
-      { id: 102, name: '帆布袋', description: '环保耐用，时尚百搭', basePrice: 59, memberPrice: 49, imageUrl: '/images/clothes-test.png', detailUrl: '/images/clothes-test-detail.webp' },
-      { id: 103, name: '帽子', description: '棒球帽，刺绣Logo', basePrice: 89, memberPrice: 79, imageUrl: '/images/clothes-test.png', detailUrl: '/images/clothes-test-detail.webp' },
-      { id: 104, name: '卫衣', description: '加绒保暖，宽松版型', basePrice: 259, memberPrice: 229, imageUrl: '/images/clothes-test.png', detailUrl: '/images/clothes-test-detail.webp' }
-    ] });
+    try {
+      // 加载周边分类商品 (categoryId=4)
+      const res = await api.get('/api/v1/product/list', { page: 1, size: 50, categoryId: 4 }, false);
+      const products = (res.data.records || []).map(p => ({
+        ...p, memberPrice: Math.round(p.basePrice * 0.9),
+        imageUrl: p.imageUrl || '/images/clothes-test.png'
+      }));
+      this.setData({ products: products.length > 0 ? products : [
+        { id: 8, name: '咖啡豆', description: '精选阿拉比卡咖啡豆', basePrice: 88, memberPrice: 79, imageUrl: '/images/clothes-test.png' },
+        { id: 9, name: '品牌T恤', description: '100%纯棉，经典Logo', basePrice: 199, memberPrice: 179, imageUrl: '/images/clothes-test.png' },
+        { id: 10, name: '帆布袋', description: '环保耐用，时尚百搭', basePrice: 59, memberPrice: 49, imageUrl: '/images/clothes-test.png' },
+        { id: 11, name: '帽子', description: '棒球帽，刺绣Logo', basePrice: 89, memberPrice: 79, imageUrl: '/images/clothes-test.png' },
+      ]});
+    } catch (e) {
+      this.setData({ products: [] });
+    }
   },
 
   async onAddToCart(e) {
     const app = getApp();
     if (!app.checkLogin()) return;
     const item = e.currentTarget.dataset.item;
+    // 服饰类商品不需要 size/temp/sugar
+    const isCloth = item.categoryId >= 4 || (item.categoryId === undefined && item.basePrice >= 50);
     try {
-      await api.post('/api/v1/cart/add', { productId: item.id, quantity: 1, size: '中杯', temp: '热饮', sugar: '标准糖' });
+      await api.post('/api/v1/cart/add', {
+        productId: item.id, quantity: 1,
+        size: isCloth ? '均码' : '中杯',
+        temp: isCloth ? '' : '热饮',
+        sugar: isCloth ? '' : '标准糖'
+      });
       wx.showToast({ title: '已加入购物车', icon: 'success' });
       this.loadCartCount();
     } catch (e) {
@@ -55,8 +71,7 @@ Page({
   onProductTap(e) {
     var id = e.currentTarget.dataset.id;
     var item = e.currentTarget.dataset.item;
-    var img = item.detailUrl || item.imageUrl;
-    wx.navigateTo({ url: '/pages/product/product?id=' + id + '&img=' + encodeURIComponent(img) + '&name=' + encodeURIComponent(item.name) + '&price=' + item.basePrice });
+    wx.navigateTo({ url: '/pages/product/product?id=' + id + '&img=' + encodeURIComponent(item.imageUrl || '/images/clothes.png') + '&name=' + encodeURIComponent(item.name) + '&price=' + item.basePrice });
   },
 
   onCartTap() {

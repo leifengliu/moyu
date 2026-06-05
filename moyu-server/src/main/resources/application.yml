@@ -1,18 +1,18 @@
 spring:
   profiles:
-    active: dev
+    active: ${SPRING_PROFILES_ACTIVE:dev}
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/moyu_coffee?useSSL=false&serverTimezone=UTC
-    username: root
-    password: 123456
+    url: ${DB_URL:jdbc:mysql://localhost:3306/moyu_coffee?useSSL=false&serverTimezone=UTC}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
 
   data:
     redis:
-      host: 127.0.0.1
-      port: 6379
-      password:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
       database: 0
       lettuce:
         pool:
@@ -23,7 +23,6 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto
@@ -38,18 +37,22 @@ knife4j:
     language: zh_cn
 
 jwt:
-  secret: moyu-coffee-jwt-secret-key-2026-must-be-at-least-256-bits-long
-  expiration: 604800000  # 7 days in milliseconds
+  secret: ${JWT_SECRET:moyu-coffee-jwt-secret-key-2026-must-be-at-least-256-bits-long}
+  expiration: 604800000
 
 wx:
   miniapp:
-    appid: wxc453ee274ce2ddef
-    secret: 40311c9840879e3303e592b9421fe4a4
+    appid: ${WX_APPID:your-appid}
+    secret: ${WX_SECRET:your-secret}
     msg-data-format: JSON
 
+admin:
+  username: ${ADMIN_USERNAME:root}
+  password: ${ADMIN_PASSWORD:root}
+
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 logging:
   level:
-    com.moyucoffee: debug
+    com.moyucoffee: ${LOG_LEVEL:info}

@@ -266,7 +266,9 @@ public class OrderService {
             vo.setOrderNo(order.getOrderNo());
             vo.setStatus(order.getStatus());
             vo.setStatusText(OrderStatus.valueOf(order.getStatus().toUpperCase()).getDesc());
-            vo.setCreateTime(order.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            if (order.getCreateTime() != null) {
+                vo.setCreateTime(order.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            }
             vo.setTotalAmount(order.getTotalAmount());
 
             List<OrderItem> items = orderItemMapper.selectList(
@@ -325,7 +327,9 @@ public class OrderService {
         vo.setPayType(order.getPayType());
         vo.setPickupCode(order.getPickupCode());
         vo.setRemark(order.getRemark());
-        vo.setCreateTime(order.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        if (order.getCreateTime() != null) {
+            vo.setCreateTime(order.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        }
 
         List<OrderItem> items = orderItemMapper.selectList(
                 new LambdaQueryWrapper<OrderItem>().eq(OrderItem::getOrderId, order.getId()));

@@ -29,11 +29,11 @@
   <!-- Quick Links -->
   <view class="quick-section">
     <view class="quick-card anim-fade-up link-menu" style="animation-delay:0.1s" bindtap="onQuickMenu">
-      <text class="quick-icon">☕</text>
+      <image class="quick-icon" src="/images/tab-menu.png" mode="aspectFit" />
       <text class="quick-label">点单</text>
     </view>
     <view class="quick-card anim-fade-up link-shop" style="animation-delay:0.2s" bindtap="onQuickShop">
-      <text class="quick-icon">🛍</text>
+      <image class="quick-icon" src="/images/Merchandise.png" mode="aspectFit" />
       <text class="quick-label">商店</text>
     </view>
   </view>

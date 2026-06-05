@@ -17,7 +17,7 @@
 .quick-card { padding: 56rpx 36rpx; display: flex; flex-direction: column; gap: 16rpx; position: relative; overflow: hidden; }
 .quick-card.link-menu { background: linear-gradient(135deg, #4A3428, #6B4F3E); }
 .quick-card.link-shop { background: linear-gradient(135deg, #6B4F3E, #8B6F5E); }
-.quick-icon { font-size: 52rpx; }
+.quick-icon { width: 64rpx; height: 64rpx; }
 .quick-label { font-size: 32rpx; color: #fff; font-weight: 500; }
 
 .products-section { padding: 24rpx 48rpx; }

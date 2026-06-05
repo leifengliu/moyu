@@ -35,7 +35,7 @@
     </view>
   </view>
 
-  <view class="cart-fab" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
+  <view class="cart-fab anim-scale-in" style="animation-delay:0.05s" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
     <image class="cart-fab-icon" src="/images/cart.png" mode="aspectFit" />
     <view class="cart-badge">{{cartCount}}</view>
   </view>

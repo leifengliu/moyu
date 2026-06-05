@@ -26,6 +26,6 @@
 
 .add-btn { width: 52rpx; height: 52rpx; background: var(--color-dark); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 32rpx; }
 
-.cart-fab { position: fixed; right: 48rpx; bottom: 200rpx; width: 108rpx; height: 108rpx; background: var(--color-dark); display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 8rpx 30rpx rgba(0,0,0,0.15); }
+.cart-fab { position: fixed; right: 48rpx; bottom: 200rpx; width: 108rpx; height: 108rpx; background: var(--color-dark); display: flex; align-items: center; justify-content: center; box-shadow: 0 8rpx 30rpx rgba(0,0,0,0.15); }
 .cart-fab-icon { width: 48rpx; height: 48rpx; }
 .cart-badge { position: absolute; top: -8rpx; right: -8rpx; width: 40rpx; height: 40rpx; background: var(--color-gold); color: var(--color-dark); font-size: 22rpx; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
