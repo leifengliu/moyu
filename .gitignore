@@ -1,0 +1,30 @@
+# 环境变量文件 (不要提交真实密钥)
+*.env
+/etc/moyu-coffee.env
+
+# 本地敏感配置
+application-local.yml
+**/application-local.yml
+
+# IDE
+.idea/
+*.iml
+# VS Code
+.vscode/
+
+# Maven
+moyu-server/target/
+
+# Node
+admin-front/node_modules/
+admin-front/dist/
+design/node_modules/
+design/dist/
+newDesign/node_modules/
+newDesign/dist/
+newDesign2/node_modules/
+newDesign2/dist/
+
+# OS
+.DS_Store
+Thumbs.db

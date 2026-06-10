@@ -17,10 +17,14 @@ Page({
       success: function(res) {
         if (res.data.code === 200) {
           var user = res.data.data || {};
+          if (user.avatarUrl && !user.avatarUrl.startsWith('http')) {
+            user.avatarUrl = getApp().globalData.baseUrl + user.avatarUrl;
+          }
           self.setData({
             userInfo: user,
             editNickname: user.nickname || '',
-            editBirthday: user.birthday || ''
+            editBirthday: user.birthday || '',
+            editGender: user.gender || '男'
           });
         }
       }
@@ -45,18 +49,23 @@ Page({
     });
   },
 
-  onNicknameInput(e) { this.setData({ editNickname: e.detail.value }); },
-  onBirthdayChange(e) { this.setData({ editBirthday: e.detail.value }); },
-  onGenderTap(e) { this.setData({ editGender: e.currentTarget.dataset.gender }); },
+  onNicknameInput(e) { this.setData({ editNickname: e.detail.value }); this.debouncedSave(); },
+  onBirthdayChange(e) { this.setData({ editBirthday: e.detail.value }); this.onSave(); },
+  onGenderTap(e) { this.setData({ editGender: e.currentTarget.dataset.gender }); this.onSave(); },
+
+  debouncedSave() {
+    if (this._saveTimer) clearTimeout(this._saveTimer);
+    this._saveTimer = setTimeout(() => { this.onSave(); }, 600);
+  },
 
   onSave() {
+    var self = this;
     api.put('/api/v1/user/info', {
-      nickname: this.data.editNickname,
-      birthday: this.data.editBirthday
+      nickname: self.data.editNickname,
+      birthday: self.data.editBirthday,
+      gender: self.data.editGender
     }).then(function() {
       getApp().fetchUserInfo();
-      wx.showToast({ title: '已保存', icon: 'success' });
-      setTimeout(function() { wx.navigateBack(); }, 800);
     });
   },
 

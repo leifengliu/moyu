@@ -1,5 +1,5 @@
 .header { background: var(--color-dark); position: sticky; top: 0; z-index: 100; }
-.nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 0 48rpx 24rpx; }
+.nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 24rpx 48rpx; }
 .brand { font-size: 40rpx; color: var(--color-gold); letter-spacing: 4rpx; font-family: 'Times New Roman', serif; }
 
 .search-section { background: var(--color-dark); padding: 24rpx 48rpx 48rpx; }

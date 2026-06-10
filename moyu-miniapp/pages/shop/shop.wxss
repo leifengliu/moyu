@@ -1,6 +1,6 @@
 .header { background: #fff; border-bottom: 2rpx solid var(--color-border); position: sticky; top: 0; z-index: 100; }
-.search-wrap { padding: 0 48rpx 20rpx; }
-.search-box { display: flex; align-items: center; gap: 16rpx; background: #F5F5F3; padding: 22rpx 28rpx; border: 2rpx solid var(--color-border); }
+.search-wrap { padding-left: 48rpx; padding-bottom: 24rpx; }
+.search-box { display: flex; align-items: center; gap: 16rpx; background: #F5F5F3; padding: 0 28rpx; border: 2rpx solid var(--color-border); }
 .search-icon { width: 32rpx; height: 32rpx; }
 .search-input { flex: 1; font-size: 28rpx; color: var(--color-text); }
 

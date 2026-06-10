@@ -12,6 +12,7 @@ public class ProductVO {
     private String name;
     private String description;
     private String imageUrl;
+    private List<String> images;
     private BigDecimal basePrice;
     private Integer isRecommend;
     private Integer isNew;

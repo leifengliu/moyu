@@ -7,50 +7,38 @@
     </view>
   </view>
 
-  <!-- Image -->
+  <!-- Image Carousel -->
   <view class="product-image-section">
-    <image class="product-image" src="{{product.imageUrl}}" mode="aspectFill" />
+    <swiper wx:if="{{product.images && product.images.length > 1}}" class="product-swiper" indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#fff" circular autoplay="{{false}}">
+      <swiper-item wx:for="{{product.images}}" wx:key="*this">
+        <image class="product-image" src="{{item}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+    <image wx:else class="product-image-single" src="{{product.imageUrl}}" mode="aspectFill" />
   </view>
 
   <!-- Info -->
   <view class="product-info-section">
     <view class="info-row">
-      <text class="product-name serif">{{product.name}}</text>
+      <text class="product-name">{{product.name}}</text>
       <view class="price-row">
-        <text class="price-symbol">¥</text><text class="price-value">{{product.basePrice}}</text>
+        <text class="price-symbol">¥</text><text class="price-value">{{currentPrice}}</text>
       </view>
     </view>
     <text class="product-desc">{{product.description}}</text>
   </view>
 
-  <!-- Spec Options -->
+  <!-- Dynamic Spec Options -->
   <view class="specs-section">
-    <!-- Size -->
-    <view class="spec-group">
-      <text class="spec-label">规格 SIZE</text>
-      <view class="spec-options">
-        <view class="spec-option {{selectedSize === item.specValue ? 'active' : ''}}" wx:for="{{sizes}}" wx:key="specValue" bindtap="onSelectSize" data-value="{{item.specValue}}">
-          {{item.specValue}}
-        </view>
-      </view>
-    </view>
-
-    <!-- Temperature -->
-    <view class="spec-group">
-      <text class="spec-label">温度 TEMPERATURE</text>
-      <view class="spec-options grid-4">
-        <view class="spec-option {{selectedTemp === item.specValue ? 'active' : ''}}" wx:for="{{temps}}" wx:key="specValue" bindtap="onSelectTemp" data-value="{{item.specValue}}">
-          {{item.specValue}}
-        </view>
-      </view>
-    </view>
-
-    <!-- Sugar -->
-    <view class="spec-group">
-      <text class="spec-label">甜度 SWEETNESS</text>
-      <view class="spec-options grid-4">
-        <view class="spec-option {{selectedSugar === item.specValue ? 'active' : ''}}" wx:for="{{sugars}}" wx:key="specValue" bindtap="onSelectSugar" data-value="{{item.specValue}}">
-          {{item.specValue}}
+    <view class="spec-group" wx:for="{{specs}}" wx:key="specType">
+      <text class="spec-label">{{item.specType}}</text>
+      <view class="spec-options {{item.options.length === 4 ? 'grid-4' : ''}}">
+        <view wx:for="{{item.options}}" wx:key="specValue" wx:for-item="opt"
+          class="spec-option {{opt.active ? 'active' : ''}}"
+          bindtap="onSpecTap" data-spec-type="{{item.specType}}" data-spec-value="{{opt.specValue}}" data-selection-type="{{item.selectionType || 'SINGLE'}}">
+          <text>{{opt.specValue}}</text>
+          <text wx:if="{{opt.priceAdjust > 0}}" class="spec-price-adjust">+¥{{opt.priceAdjust}}</text>
+          <text wx:if="{{opt.priceAdjust < 0}}" class="spec-price-adjust min">¥{{opt.priceAdjust}}</text>
         </view>
       </view>
     </view>

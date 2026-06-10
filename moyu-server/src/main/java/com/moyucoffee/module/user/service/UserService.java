@@ -3,6 +3,7 @@ package com.moyucoffee.module.user.service;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
+import com.moyucoffee.config.CosService;
 import com.moyucoffee.common.exception.BusinessException;
 import com.moyucoffee.module.user.dto.LoginRequest;
 import com.moyucoffee.module.user.dto.UserVO;
@@ -16,10 +17,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -31,9 +29,9 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final WxMaService wxMaService;
     private final StringRedisTemplate redisTemplate;
+    private final CosService cosService;
 
     private static final String SMS_KEY_PREFIX = "sms:login:";
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/avatar/";
 
     /**
      * 微信一键登录 (含手机号解密)
@@ -87,21 +85,7 @@ public class UserService {
         User user = userMapper.selectById(userId);
         if (user == null) throw new BusinessException("用户不存在");
 
-        File dir = new File(UPLOAD_DIR);
-        if (!dir.exists()) dir.mkdirs();
-
-        String ext = getFileExt(file.getOriginalFilename());
-        String filename = userId + "_" + UUID.randomUUID().toString().substring(0, 8) + "." + ext;
-        File dest = new File(dir, filename);
-
-        try {
-            file.transferTo(dest);
-        } catch (IOException e) {
-            log.error("头像上传失败", e);
-            throw new BusinessException("头像上传失败");
-        }
-
-        String avatarUrl = "/uploads/avatar/" + filename;
+        String avatarUrl = cosService.upload(file, "avatar");
         user.setAvatarUrl(avatarUrl);
         userMapper.updateById(user);
         return avatarUrl;
@@ -193,11 +177,6 @@ public class UserService {
         }
         redisTemplate.opsForValue().set(key, "1", 1, TimeUnit.DAYS);
         return 10;
-    }
-
-    private String getFileExt(String filename) {
-        if (filename == null || !filename.contains(".")) return "png";
-        return filename.substring(filename.lastIndexOf(".") + 1);
     }
 
     private UserVO toVO(User user) {

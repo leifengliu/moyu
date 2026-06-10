@@ -111,6 +111,13 @@
             <version>${wx-java.version}</version>
         </dependency>
 
+        <!-- Tencent COS -->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.227</version>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

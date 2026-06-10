@@ -2,8 +2,11 @@ package com.moyucoffee.module.product.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class SpecGroup {
     private String specType;
-    private java.util.List<SpecOption> options;
+    private String selectionType;
+    private List<SpecOption> options;
 }

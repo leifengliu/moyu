@@ -1,13 +1,9 @@
 <view class="menu-page">
   <!-- Header -->
   <view class="header">
-    <view class="status-bar-placeholder"></view>
-    <view class="header-bar">
-      <text class="header-title">点单</text>
-      <view style="width:200rpx;"></view>
-    </view>
-    <view class="search-wrap">
-      <view class="search-box">
+    <view class="status-bar-placeholder" style="height: {{statusBarHeight}}px;"></view>
+    <view class="search-wrap" style="padding-top: {{capsuleTopGap}}px; padding-right: {{capsuleRightOffset}}px;">
+      <view class="search-box" style="height: {{capsuleHeight}}px;">
         <image class="search-icon" src="/images/search.svg" />
         <input class="search-input" placeholder="搜索商品..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
       </view>
@@ -18,34 +14,37 @@
   <view class="main-area">
     <!-- 左侧分类导航 -->
     <scroll-view class="sidebar" scroll-y="true">
-      <view class="cat-item {{activeCategory === item.code ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-code="{{item.code}}">
-        {{item.name}}
+      <view class="cat-item {{activeCategory === item.categoryCode ? 'active' : ''}}" wx:for="{{groupedProducts}}" wx:key="categoryCode" bindtap="onCategoryTap" data-code="{{item.categoryCode}}">
+        {{item.categoryName}}
       </view>
     </scroll-view>
 
     <!-- 右侧商品 -->
-    <scroll-view class="content" scroll-y="true">
+    <scroll-view class="content" scroll-y="true" scroll-into-view="{{scrollToCategory}}" scroll-with-animation bindscroll="onContentScroll">
       <block wx:if="{{_anim}}">
-      <view class="product-item anim-fade-up" wx:for="{{products}}" wx:key="id" wx:for-index="i" style="animation-delay:{{i * 0.05}}s" bindtap="onProductTap" data-id="{{item.id}}">
-        <image class="prod-img" src="{{item.imageUrl}}" mode="aspectFill" />
-        <view class="prod-info">
-          <text class="prod-name">{{item.name}}</text>
-          <text class="prod-desc">{{item.description}}</text>
-          <view class="prod-bottom">
-            <view class="prod-prices">
-              <block wx:if="{{isMember}}">
-                <view class="member-price">
-                  <text class="price-sym">¥</text><text class="price-num">{{item.memberPrice}}</text>
+      <view class="cat-section" wx:for="{{groupedProducts}}" wx:key="categoryCode" id="cat-{{item.categoryCode}}">
+        <view class="cat-section-title anim-fade-up" style="animation-delay:{{index * 0.02}}s">{{item.categoryName}}</view>
+        <view class="product-item anim-fade-up" wx:for="{{item.products}}" wx:key="id" wx:for-item="product" wx:for-index="pi" style="animation-delay:{{pi * 0.04 + index * 0.02}}s" bindtap="onProductTap" data-id="{{product.id}}" data-item="{{product}}">
+          <image class="prod-img" src="{{product.imageUrl}}" mode="aspectFill" />
+          <view class="prod-info">
+            <text class="prod-name">{{product.name}}</text>
+            <text class="prod-desc">{{product.description}}</text>
+            <view class="prod-bottom">
+              <view class="prod-prices">
+                <block wx:if="{{isMember}}">
+                  <view class="member-price">
+                    <text class="price-sym">¥</text><text class="price-num">{{product.memberPrice}}</text>
+                  </view>
+                  <view class="orig-price">
+                    <text class="price-sym">¥</text><text class="price-num">{{product.basePrice}}</text>
+                  </view>
+                </block>
+                <view class="normal-price" wx:else>
+                  <text class="price-sym">¥</text><text class="price-num">{{product.basePrice}}</text>
                 </view>
-                <view class="orig-price">
-                  <text class="price-sym">¥</text><text class="price-num">{{item.basePrice}}</text>
-                </view>
-              </block>
-              <view class="normal-price" wx:else>
-                <text class="price-sym">¥</text><text class="price-num">{{item.basePrice}}</text>
               </view>
+              <view class="add-btn" catchtap="onAddToCart" data-item="{{product}}">+</view>
             </view>
-            <view class="add-btn" catchtap="onAddToCart" data-item="{{item}}">+</view>
           </view>
         </view>
       </view>
@@ -54,7 +53,7 @@
   </view>
 
   <!-- Cart FAB -->
-  <view class="cart-fab" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
+  <view class="cart-fab anim-scale-in" wx:if="{{cartCount > 0}}" bindtap="onCartTap">
     <image class="cart-fab-icon" src="/images/cart.png" mode="aspectFit" />
     <view class="cart-badge">{{cartCount}}</view>
   </view>

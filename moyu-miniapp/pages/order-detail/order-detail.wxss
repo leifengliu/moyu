@@ -1,7 +1,7 @@
 .container { padding-bottom: 80rpx; }
 .container.has-bar { padding-bottom: 240rpx; }
 
-.header-content { padding: 0 48rpx 24rpx; display: flex; align-items: center; }
+.header-content { padding: 24rpx 48rpx; display: flex; align-items: center; }
 .back-btn { width: 40rpx; height: 40rpx; }
 .capsule-spacer { width: 174rpx; flex-shrink: 0; }
 

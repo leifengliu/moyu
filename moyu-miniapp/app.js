@@ -2,7 +2,8 @@ App({
   globalData: {
     token: '',
     userInfo: null,
-    // baseUrl: 'http://www.gaozhoumoyu.online:8080'
+    // baseUrl: 'https://moyugaozhou.online'
+    // baseUrl: 'https://43.138.197.149'
     baseUrl: 'http://127.0.0.1:8080'
   },
 

@@ -3,7 +3,6 @@
     <view class="status-bar" style="height: {{statusBarHeight || 44}}px;"></view>
     <view class="top-row">
       <image class="back-btn" src="/images/back.svg" bindtap="onGoBack" />
-      <text class="save-btn" bindtap="onSave">保存</text>
     </view>
   </view>
 
@@ -23,7 +22,7 @@
   <view class="form-sec">
     <view class="field-block">
       <text class="field-label">昵称</text>
-      <input style="height: rpx;" class="field-input-box" value="{{editNickname}}" placeholder="请输入昵称" bindinput="onNicknameInput" />
+      <input class="field-input-box" value="{{editNickname}}" placeholder="请输入昵称" bindinput="onNicknameInput" />
     </view>
     <view class="field-block">
       <text class="field-label">手机号</text>
