@@ -9,10 +9,12 @@
     </view>
   </view>
 
-  <view class="banner anim-fade-in">
-    <text class="banner-tag">MOYU LIFESTYLE</text>
-    <text class="banner-title">品牌周边</text>
-    <text class="banner-desc">精选好物，咖啡生活</text>
+  <view class="banner-wrap anim-fade-in">
+    <view class="banner">
+      <text class="banner-tag">MOYU LIFESTYLE</text>
+      <text class="banner-title">品牌周边</text>
+      <text class="banner-desc">精选好物，咖啡生活</text>
+    </view>
   </view>
 
   <block wx:if="{{_anim}}">

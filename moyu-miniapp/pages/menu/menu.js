@@ -59,7 +59,7 @@ Page({
       api.get('/api/v1/product/list', { page: 1, size: 200 }, false)
     ]);
 
-    var cats = (catRes.data && catRes.data.length) ? catRes.data : [
+    var cats = (catRes.data && catRes.data.length) ? catRes.data.filter(function(c) { return c.code !== 'merch'; }) : [
       { id: 1, code: 'new', name: '新品' },
       { id: 2, code: 'coffee', name: '咖啡' },
       { id: 3, code: 'caffeine-free', name: '零咖' },
