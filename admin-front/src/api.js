@@ -42,4 +42,11 @@ export const api = {
   addSpecOption: (groupId, data) => request('/spec-groups/' + groupId + '/options', { method: 'POST', body: JSON.stringify(data) }),
   updateSpecOption: (id, data) => request('/spec-options/' + id, { method: 'PUT', body: JSON.stringify(data) }),
   delSpecOption: (id) => request('/spec-options/' + id, { method: 'DELETE' }),
+  // Banners
+  getBanners: () => request('/banners'),
+  saveBanner: (id, data) => id ? request('/banners/' + id, { method: 'PUT', body: JSON.stringify(data) }) : request('/banners', { method: 'POST', body: JSON.stringify(data) }),
+  delBanner: (id) => request('/banners/' + id, { method: 'DELETE' }),
+  // Home Picks
+  getHomePicks: () => request('/home-picks'),
+  saveHomePicks: (data) => request('/home-picks', { method: 'PUT', body: JSON.stringify(data) }),
 };

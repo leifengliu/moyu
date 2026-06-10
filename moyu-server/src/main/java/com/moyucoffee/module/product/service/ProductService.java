@@ -15,6 +15,10 @@ import com.moyucoffee.module.product.mapper.CategoryMapper;
 import com.moyucoffee.module.product.mapper.ProductMapper;
 import com.moyucoffee.module.product.mapper.ProductSpecMapper;
 import com.moyucoffee.module.product.mapper.SpecGroupMapper;
+import com.moyucoffee.module.product.mapper.BannerMapper;
+import com.moyucoffee.module.product.mapper.HomePickMapper;
+import com.moyucoffee.module.product.entity.Banner;
+import com.moyucoffee.module.product.entity.HomePick;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +36,8 @@ public class ProductService {
     private final ProductMapper productMapper;
     private final ProductSpecMapper productSpecMapper;
     private final SpecGroupMapper specGroupMapper;
+    private final BannerMapper bannerMapper;
+    private final HomePickMapper homePickMapper;
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private List<String> parseImages(String raw) {
@@ -165,5 +171,34 @@ public class ProductService {
         }
         vo.setSpecs(specGroups);
         return vo;
+    }
+
+    public List<Banner> getBanners() {
+        return bannerMapper.selectList(
+                new LambdaQueryWrapper<Banner>().eq(Banner::getStatus, 1).orderByAsc(Banner::getSortOrder));
+    }
+
+    public java.util.Map<String, List<ProductVO>> getHomeRecommend() {
+        List<HomePick> picks = homePickMapper.selectList(
+                new LambdaQueryWrapper<HomePick>().orderByAsc(HomePick::getSortOrder));
+        Map<String, List<Long>> pickIds = new java.util.LinkedHashMap<>();
+        pickIds.put("drinks", new ArrayList<>());
+        pickIds.put("merch", new ArrayList<>());
+        for (HomePick p : picks) {
+            pickIds.computeIfAbsent(p.getSection(), k -> new ArrayList<>()).add(p.getProductId());
+        }
+        java.util.Map<String, List<ProductVO>> result = new java.util.LinkedHashMap<>();
+        for (String section : java.util.Arrays.asList("drinks", "merch")) {
+            List<Long> ids = pickIds.getOrDefault(section, Collections.emptyList());
+            List<Product> products = ids.isEmpty() ? Collections.emptyList()
+                    : productMapper.selectBatchIds(ids);
+            // 保持 sort_order 顺序
+            List<Product> ordered = new ArrayList<>();
+            for (Long id : ids) {
+                products.stream().filter(p -> p.getId().equals(id)).findFirst().ifPresent(ordered::add);
+            }
+            result.put(section, ordered.stream().map(this::toVO).collect(Collectors.toList()));
+        }
+        return result;
     }
 }

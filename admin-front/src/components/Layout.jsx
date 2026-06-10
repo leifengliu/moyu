@@ -3,6 +3,7 @@ import { setToken } from '../api'
 
 const links = [
   { to: '/', label: '仪表盘', icon: '📊' },
+  { to: '/home-config', label: '首页管理', icon: '🏠' },
   { to: '/products', label: '商品管理', icon: '📦' },
   { to: '/categories', label: '分类管理', icon: '🗂' },
   { to: '/spec-groups', label: '规格管理', icon: '⚙' },

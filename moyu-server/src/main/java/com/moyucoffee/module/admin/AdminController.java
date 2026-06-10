@@ -160,4 +160,41 @@ public class AdminController {
                            @RequestParam(required = false) String keyword) {
         return Result.success(adminService.getUsers(page, size, keyword));
     }
+
+    // ==================== Banners ====================
+
+    @GetMapping("/banners")
+    public Result<?> banners() {
+        return Result.success(adminService.getBanners());
+    }
+
+    @PostMapping("/banners")
+    public Result<?> addBanner(@RequestBody Map<String, Object> body) {
+        return Result.success(adminService.addBanner(body));
+    }
+
+    @PutMapping("/banners/{id}")
+    public Result<?> updateBanner(@PathVariable Long id, @RequestBody Map<String, Object> body) {
+        adminService.updateBanner(id, body);
+        return Result.success();
+    }
+
+    @DeleteMapping("/banners/{id}")
+    public Result<?> deleteBanner(@PathVariable Long id) {
+        adminService.deleteBanner(id);
+        return Result.success();
+    }
+
+    // ==================== Home Picks ====================
+
+    @GetMapping("/home-picks")
+    public Result<?> homePicks() {
+        return Result.success(adminService.getHomePicks());
+    }
+
+    @PutMapping("/home-picks")
+    public Result<?> saveHomePicks(@RequestBody Map<String, Object> body) {
+        adminService.saveHomePicks(body);
+        return Result.success();
+    }
 }

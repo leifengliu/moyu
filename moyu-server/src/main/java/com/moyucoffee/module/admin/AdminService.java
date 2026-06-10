@@ -13,6 +13,10 @@ import com.moyucoffee.module.product.entity.Product;
 import com.moyucoffee.module.product.entity.ProductSpec;
 import com.moyucoffee.module.product.entity.SpecGroup;
 import com.moyucoffee.module.product.entity.SpecOption;
+import com.moyucoffee.module.product.entity.Banner;
+import com.moyucoffee.module.product.entity.HomePick;
+import com.moyucoffee.module.product.mapper.BannerMapper;
+import com.moyucoffee.module.product.mapper.HomePickMapper;
 import com.moyucoffee.module.product.mapper.CategoryMapper;
 import com.moyucoffee.module.product.mapper.ProductMapper;
 import com.moyucoffee.module.product.mapper.ProductSpecMapper;
@@ -40,6 +44,8 @@ public class AdminService {
     private final ProductSpecMapper productSpecMapper;
     private final SpecGroupMapper specGroupMapper;
     private final SpecOptionMapper specOptionMapper;
+    private final BannerMapper bannerMapper;
+    private final HomePickMapper homePickMapper;
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private List<String> parseImages(String raw) {
@@ -335,5 +341,77 @@ public class AdminService {
         Page<Map<String, Object>> result = new Page<>(page, size, pg.getTotal());
         result.setRecords(list);
         return result;
+    }
+
+    // ==================== Banner ====================
+
+    public List<Banner> getBanners() {
+        return bannerMapper.selectList(
+                new LambdaQueryWrapper<Banner>().orderByAsc(Banner::getSortOrder));
+    }
+
+    public Banner addBanner(Map<String, Object> body) {
+        Banner b = new Banner();
+        b.setImageUrl((String) body.get("imageUrl"));
+        b.setSortOrder(body.get("sortOrder") != null ? Integer.valueOf(body.get("sortOrder").toString()) : 0);
+        b.setStatus(1);
+        bannerMapper.insert(b);
+        return b;
+    }
+
+    public void updateBanner(Long id, Map<String, Object> body) {
+        Banner b = bannerMapper.selectById(id);
+        if (b == null) return;
+        if (body.containsKey("imageUrl")) b.setImageUrl((String) body.get("imageUrl"));
+        if (body.containsKey("sortOrder")) b.setSortOrder(Integer.valueOf(body.get("sortOrder").toString()));
+        if (body.containsKey("status")) b.setStatus(Integer.valueOf(body.get("status").toString()));
+        bannerMapper.updateById(b);
+    }
+
+    public void deleteBanner(Long id) {
+        bannerMapper.deleteById(id);
+    }
+
+    // ==================== Home Picks ====================
+
+    public Map<String, Object> getHomePicks() {
+        List<HomePick> picks = homePickMapper.selectList(
+                new LambdaQueryWrapper<HomePick>().orderByAsc(HomePick::getSortOrder));
+        Map<String, Object> result = new LinkedHashMap<>();
+        String[] sections = {"drinks", "merch"};
+        for (String sec : sections) {
+            List<Map<String, Object>> items = new ArrayList<>();
+            for (HomePick p : picks) {
+                if (sec.equals(p.getSection())) {
+                    Product prod = productMapper.selectById(p.getProductId());
+                    Map<String, Object> item = new LinkedHashMap<>();
+                    item.put("id", p.getId());
+                    item.put("productId", p.getProductId());
+                    item.put("productName", prod != null ? prod.getName() : "");
+                    items.add(item);
+                }
+            }
+            result.put(sec, items);
+        }
+        return result;
+    }
+
+    public void saveHomePicks(Map<String, Object> body) {
+        homePickMapper.delete(new LambdaQueryWrapper<HomePick>());
+        String[] sections = {"drinks", "merch"};
+        for (String sec : sections) {
+            Object val = body.get(sec);
+            if (val instanceof List) {
+                @SuppressWarnings("unchecked")
+                List<Object> ids = (List<Object>) val;
+                for (int i = 0; i < ids.size(); i++) {
+                    HomePick p = new HomePick();
+                    p.setSection(sec);
+                    p.setProductId(Long.valueOf(ids.get(i).toString()));
+                    p.setSortOrder(i);
+                    homePickMapper.insert(p);
+                }
+            }
+        }
     }
 }

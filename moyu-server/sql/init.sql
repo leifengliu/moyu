@@ -273,6 +273,24 @@ CREATE TABLE `cfg_store` (
   `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='门店表';
 
+CREATE TABLE `cfg_banner` (
+  `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+  `image_url` VARCHAR(512) NOT NULL COMMENT '轮播图URL',
+  `sort_order` INT DEFAULT 0,
+  `status` TINYINT DEFAULT 1,
+  `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='首页轮播图';
+
+CREATE TABLE `cfg_home_pick` (
+  `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+  `section` VARCHAR(16) NOT NULL COMMENT 'drinks饮品推荐 / merch精选周边',
+  `product_id` BIGINT NOT NULL,
+  `sort_order` INT DEFAULT 0,
+  UNIQUE KEY `uk_section_sort` (`section`, `sort_order`),
+  KEY `idx_section` (`section`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='首页推荐商品';
+
 -- =============================================
 -- 9. 种子数据 (样例数据)
 -- =============================================
@@ -448,6 +466,12 @@ INSERT INTO `pts_product` (`id`, `name`, `image_url`, `points`, `stock`) VALUES
 -- -------------------------------------------
 INSERT INTO `cfg_store` (`id`, `name`, `address`, `phone`, `latitude`, `longitude`, `business_hours`) VALUES
 (1, '摸鱼咖啡（万象城店）', '深圳市南山区深南大道9668号万象城B1层', '0755-88888888', 22.5362000, 113.9520000, '08:00-22:00');
+
+-- 首页轮播图
+INSERT INTO `cfg_banner` (`id`, `image_url`, `sort_order`, `status`) VALUES
+(1, '/images/banner-1.png', 1, 1),
+(2, '/images/banner-2.png', 2, 1),
+(3, '/images/banner-3.png', 3, 1);
 
 -- -------------------------------------------
 -- 优惠券 (系统预设)

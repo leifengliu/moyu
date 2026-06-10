@@ -2,12 +2,13 @@ const api = require('../../utils/api');
 
 Page({
   data: {
-    products: [],
-    banner: { title: '新会员专享', desc: '注册即送拿铁券', tag: 'EXCLUSIVE OFFER' },
+    banners: [],
+    drinks: [],
+    merch: [],
     _anim: true
   },
 
-  onLoad() { this.loadProducts(); },
+  onLoad() { this.loadHomeData(); },
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -21,11 +22,23 @@ Page({
     setTimeout(() => this.setData({ _anim: true }), 60);
   },
 
-  async loadProducts() {
+  async loadHomeData() {
     try {
-      const res = await api.get('/api/v1/product/list', { page: 1, size: 10 }, false);
-      const products = (res.data.records || []).map(p => ({...p, imageUrl: p.imageUrl || '/images/drink.png'}));
-      this.setData({ products });
+      const res = await api.get('/api/v1/product/home', {}, false);
+      if (res.code === 200) {
+        const data = res.data;
+        const banners = (data.banners || []).map(b => ({
+          ...b,
+          imageUrl: b.imageUrl && !b.imageUrl.startsWith('http') ? getApp().globalData.baseUrl + b.imageUrl : b.imageUrl
+        }));
+        const drinks = (data.recommend.drinks || []).map(p => ({
+          ...p, imageUrl: p.imageUrl || '/images/drink.png'
+        }));
+        const merch = (data.recommend.merch || []).map(p => ({
+          ...p, imageUrl: p.imageUrl || '/images/clothes-test.png'
+        }));
+        this.setData({ banners, drinks, merch });
+      }
     } catch (e) { console.error(e); }
   },
 

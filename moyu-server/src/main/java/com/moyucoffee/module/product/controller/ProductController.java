@@ -33,6 +33,14 @@ public class ProductController {
         return Result.success(productService.getRecommendProducts());
     }
 
+    @GetMapping("/home")
+    public Result<?> getHomeData() {
+        java.util.Map<String, Object> data = new java.util.LinkedHashMap<>();
+        data.put("banners", productService.getBanners());
+        data.put("recommend", productService.getHomeRecommend());
+        return Result.success(data);
+    }
+
     @GetMapping("/search")
     public Result<?> search(@RequestParam String keyword) {
         return Result.success(productService.searchProducts(keyword));
